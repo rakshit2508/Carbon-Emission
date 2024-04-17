@@ -13,7 +13,7 @@ import './App.css'; // Import custom CSS file
 
 function App() {
   return (
-    <Router basename="/mtpcalculator">
+    <Router basename="/Carbon-Emission">
       <Routes>
         <Route path="/" exact element={<HomePage/>} />
         <Route path="/carbon-calculator" element={<CarbonCalculator  />} />
