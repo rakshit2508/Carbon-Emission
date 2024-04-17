@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Carbon-Emission/static/css/main.cf061b59.css",
+    "main.js": "/Carbon-Emission/static/js/main.ce204818.js",
+    "static/js/453.50a83da2.chunk.js": "/Carbon-Emission/static/js/453.50a83da2.chunk.js",
+    "static/media/logo.svg": "/Carbon-Emission/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Carbon-Emission/index.html",
+    "main.cf061b59.css.map": "/Carbon-Emission/static/css/main.cf061b59.css.map",
+    "main.ce204818.js.map": "/Carbon-Emission/static/js/main.ce204818.js.map",
+    "453.50a83da2.chunk.js.map": "/Carbon-Emission/static/js/453.50a83da2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf061b59.css",
+    "static/js/main.ce204818.js"
+  ]
+}
