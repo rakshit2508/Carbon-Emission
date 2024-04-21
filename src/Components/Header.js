@@ -15,7 +15,7 @@ const Header = ({ button1Text, button2Text }) => {
 
   const handleBackClick = () => {
     if (!isMobileMenuOpen) {
-      window.location.href = "/"; // Directly go to the home page in desktop view
+      window.location.href = "/Carbon-Emission"; // Directly go to the home page in desktop view
     }
   };
 
