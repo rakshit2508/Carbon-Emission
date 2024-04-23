@@ -11,6 +11,7 @@ const CompostingCalculator = () => {
     fuelType: '',
     distance: 0,
     manHours: 0,
+    segregationElectricity:0,
     pretreatmentType: '',
     chemicalInputs: {
       hydrochloricAcid: 0,
@@ -33,6 +34,9 @@ const CompostingCalculator = () => {
     anaerobicDigestionInputs: {
     electricityAnaerobicDigestion: 0,
     sodiumHydroxide:0,
+    vehicleType: '',
+    fuelType: '',
+    distance: 0,
     methaneProduced :0
     }
   });
@@ -93,41 +97,41 @@ const CompostingCalculator = () => {
         Small: { petrol: 0.138, diesel: 0.3070 }
       },
       manHours: 0, // hypothetical value, kg CO2 per hour
+      segregationElectricity:0.324,
       pretreatment: {
         Chemical: {
           hydrochloricAcid: 0.89, // kg CO2 per kg
           sulphuricAcid: 0.14, // kg CO2 per kg
           potassiumHydroxide: 1.94, // kg CO2 per ml
-          electricityChemical: 0.82 // kg CO2 per kWh
+          electricityChemical: 0.324 // kg CO2 per kWh
         },
         Physical: {
-          electricityPhysical: 0.82 // kg CO2 per kWh
+          electricityPhysical: 0.324 // kg CO2 per kWh
         },
         Thermal: {
-          electricityThermal: 0.82, // kg CO2 per kWh
+          electricityThermal: 0.324, // kg CO2 per kWh
           coal: 2.66772, // kg CO2 per kg  (coking coal)
           naturalGas: 2.6928, // kg CO2 per kg
           biomass: 1.7472 // kg CO2 per kg (wood and wood waste)
         },
         Microwave: {
-          electricityMicrowave: 0.82 // kg CO2 per kWh
+          electricityMicrowave: 0.324 // kg CO2 per kWh
         }
       },
       anaerobicDigestion: {
-        electricityAnaerobicDigestion: 0.82 ,// kg CO2 per kWh
+        electricityAnaerobicDigestion: 0.324 ,// kg CO2 per kWh
         sodiumHydroxide:0.46,
-        methaneProduced: 0.82
+        methaneProduced: 0.324
       }
     };
 
     let totalEmissionStep1 =
       inputs.yardWaste * emissionFactors.yardWaste +
-      inputs.foodWaste * emissionFactors.foodWaste +
-      inputs.water * emissionFactors.water +
+      inputs.foodWaste * emissionFactors.foodWaste  +
       inputs.distance *
         emissionFactors.distance[inputs.vehicleType][inputs.fuelType];
 
-    let totalEmissionStep2 = inputs.manHours * emissionFactors.manHours;
+    let totalEmissionStep2 = inputs.manHours * emissionFactors.manHours  + inputs.segregationElectricity * emissionFactors.segregationElectricity;
 
     let totalEmissionStep3 = 0;
     if (inputs.pretreatmentType) {
@@ -184,6 +188,9 @@ const CompostingCalculator = () => {
         }
       }
     }
+    totalEmissionStep3 += +
+    inputs.water * emissionFactors.water;
+    console.log(inputs.water);
     let totalEmissionStep4 = 0;
     let totalEmissionStep5  = 0;
     if (inputs.anaerobicDigestionInputs) {
@@ -208,10 +215,21 @@ const CompostingCalculator = () => {
   
       if (!isNaN(methaneProducedInput)) {
         const methaneEmissionFactor = emissionFactors.anaerobicDigestion.methaneProduced;
-        totalEmissionStep5 = -1* 0.3* methaneProducedInput * methaneEmissionFactor * 0.277777778; // MJ to KWH
+        totalEmissionStep5 = -1* 0.3* methaneProducedInput * methaneEmissionFactor * 0.277777778*55.5; // MJ to KWH
       } else {
         console.error('Invalid input value for methane produced during anaerobic digestion');
       }
+
+       // Calculate emissions for transportation part
+       const distance = parseFloat(anaerobicDigestionInputs.distance);
+       if (!isNaN(distance) && anaerobicDigestionInputs.vehicleType && anaerobicDigestionInputs.fuelType) {
+           const distanceEmissionFactor = emissionFactors.distance[anaerobicDigestionInputs.vehicleType][anaerobicDigestionInputs.fuelType];
+           totalEmissionStep4 += distance * distanceEmissionFactor;
+           console.log(distance);
+           console.log(distanceEmissionFactor);
+       } else {
+           console.error('Invalid input value for distance, vehicle type, or fuel type');
+       }
     }
 
     return {
@@ -220,7 +238,8 @@ const CompostingCalculator = () => {
       totalEmissionStep3,
       totalEmissionStep4,
       totalEmissionStep5,
-      totalEmissionCombined: totalEmissionStep1 + totalEmissionStep2 + totalEmissionStep3 + totalEmissionStep4 + totalEmissionStep5
+      totalEmissionCombined: totalEmissionStep1 + totalEmissionStep2 + totalEmissionStep3 + totalEmissionStep4 + totalEmissionStep5,
+      totalEmissionCombinedWithout :totalEmissionStep1 + totalEmissionStep2 + totalEmissionStep3 + totalEmissionStep4,
     };
   };
   
@@ -252,13 +271,7 @@ const CompostingCalculator = () => {
             onChange={handleInputChange}
             className="w-full mb-4 p-2 text-black rounded-md"
           />
-          <input
-            type="number"
-            name="water"
-            placeholder="Water (in Kg)"
-            onChange={handleInputChange}
-            className="w-full mb-4 p-2 text-black rounded-md"
-          />
+          
           <select
             name="vehicleType"
             onChange={handleInputChange}
@@ -299,11 +312,18 @@ const CompostingCalculator = () => {
       )}
       {step === 2 && (
         <div>
-          <h2 className="text-lg font-semibold mb-4">Step 2 - Manual Segregation</h2>
+          <h2 className="text-lg font-semibold mb-4">Step 2 - Segregation</h2>
           <input
             type="number"
             name="manHours"
             placeholder="Manhours (in Hours)"
+            onChange={handleInputChange}
+            className="w-full mb-4 p-2 text-black rounded-md"
+          />
+          <input
+            type="number"
+            name="segregationElectricity"
+            placeholder="Electricity (in kWh)"
             onChange={handleInputChange}
             className="w-full mb-4 p-2 text-black rounded-md"
           />
@@ -421,6 +441,14 @@ const CompostingCalculator = () => {
         />
       </div>
     )}
+          <input
+            type="number"
+            name="water"
+            placeholder="Water (in Kg)"
+            onChange={handleInputChange}
+            className="w-full mb-4 p-2 text-black rounded-md"
+          />
+    
      <button
         onClick={handleBackStep}
         className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mb-4 mr-4"
@@ -453,11 +481,41 @@ const CompostingCalculator = () => {
         onChange={handleInputChange}
         className="w-full mb-4 p-2 text-black rounded-md"
       />
+       <select
+            name="anaerobicDigestionInputs.vehicleType"
+            onChange={handleInputChange}
+            className="w-full mb-4 p-2 text-black appearance-none rounded-md text-sm sm:text-base"
+          >
+            <option value="">Select Vehicle Type</option>
+            <option value="Large">Large</option>
+            <option value="Medium">Medium</option>
+            <option value="Small">Small</option>
+          </select>
+          {inputs.anaerobicDigestionInputs.vehicleType && (
+            <select
+              name="anaerobicDigestionInputs.fuelType"
+              onChange={handleInputChange}
+              className="w-full mb-4 p-2 text-black appearance-none rounded-md text-sm sm:text-base"
+            >
+              <option value="">Select Fuel Type</option>
+              <option value="petrol">Petrol</option>
+              <option value="diesel">Diesel</option>
+            </select>
+          )}
+          {inputs.anaerobicDigestionInputs.fuelType && (
+            <input
+              type="number"
+              name="anaerobicDigestionInputs.distance"
+              placeholder="Distance (in km)"
+              onChange={handleInputChange}
+              className="w-full mb-4 p-2 text-black rounded-md"
+            />
+          )}
       <h3 className="text-md font-semibold mb-2 text-center py-2">Amount of Methane Produced</h3>
       <input
         type="number"
         name="anaerobicDigestionInputs.methaneProduced"
-        placeholder="Amount of Methane Produced (in mL)"
+        placeholder="Amount of Methane Produced (in Kg)"
         onChange={handleInputChange}
         className="w-full mb-4 p-2 text-black rounded-md"
       />
@@ -476,6 +534,7 @@ const CompostingCalculator = () => {
     </button>
   </div>
 )}
+
 
 
     </div>

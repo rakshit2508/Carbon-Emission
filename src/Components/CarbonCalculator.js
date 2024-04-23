@@ -53,7 +53,7 @@ const CarbonCalculator = () => {
                   handleSelectCalculator(2);
                 }}
               >
-                Automobiles
+                Composting
               </Link>
               <Link
                 to="/carbon-calculator"
@@ -63,7 +63,7 @@ const CarbonCalculator = () => {
                   handleSelectCalculator(3);
                 }}
               >
-                Industry
+                Incineration
               </Link>
               <button onClick={closeDropdown} className="px-4 py-2 bg-gray-800 rounded-md">Close</button>
             </div>

@@ -14,13 +14,13 @@ const AIIntegration = ({ totalEmissionSubForm1, totalEmissionSubForm2, totalEmis
         const prompt = `
           Our Anaerobic Digestion  operation currently emits a total of ${totalSum} tonnes of CO2.
           This is comprised of:
-          - ${totalEmissionSubForm1} tonnes from collection of yard waste and food waste in step 1,
-          - ${totalEmissionSubForm2} tonnes from Manual Segregation in step 2,
-          - ${totalEmissionSubForm3} tonnes from pretreatment of waste in step 3,
-          - ${totalEmissionSubForm4} tonnes from Anaerobic Digestion of waste in step 4,
+          - ${totalEmissionSubForm1} Kg CO2 eq. from Collection of yard waste and food waste in step 1,
+          - ${totalEmissionSubForm2} Kg CO2 eq. from  Segregation in step 2,
+          - ${totalEmissionSubForm3} Kg CO2 eq. from Pretreatment of waste in step 3,
+          - ${totalEmissionSubForm4} Kg CO2 eq. from Anaerobic Digestion of waste in step 4,
     
          
-          
+          Mention these emission values first and based on them give insights.
           **We are looking for suggestions to reduce our carbon emissions.**
           Please provide ideas, alternative methods, or process improvements that could help us lower our CO2 output.
         `;

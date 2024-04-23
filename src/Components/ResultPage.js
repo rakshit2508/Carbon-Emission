@@ -9,7 +9,7 @@ import PieCharts from './PieChart';
 const ResultPage = () => {
   const location = useLocation();
   const { state } = location;
-  const { totalEmissionStep1, totalEmissionStep2, totalEmissionStep3, totalEmissionStep4, totalEmissionStep5, totalEmissionCombined } = state || {};
+  const { totalEmissionStep1, totalEmissionStep2, totalEmissionStep3, totalEmissionStep4, totalEmissionStep5, totalEmissionCombined , totalEmissionCombinedWithout} = state || {};
   // name of variables should be same as passed from the component
   console.log("Total Emissions:", state); // Ensure state is correctly received
   
@@ -34,7 +34,7 @@ const ResultPage = () => {
             totalEmissionSubForm3={totalEmissionStep3}
             totalEmissionSubForm4={totalEmissionStep4}
             totalEmissionSubForm5={totalEmissionStep5}
-            totalSum={totalEmissionCombined}
+            totalSum2={totalEmissionCombinedWithout}
           />
         </div>
         <AIIntegration 
@@ -44,6 +44,7 @@ const ResultPage = () => {
           totalEmissionSubForm4={totalEmissionStep4}
           totalEmissionSubForm5={totalEmissionStep5}
           totalSum={totalEmissionCombined}
+          totalSum2={totalEmissionCombinedWithout}
         />
       </div>
       <Footer />

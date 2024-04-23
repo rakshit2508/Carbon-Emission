@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import logo from '../logo.svg';
+
+import logofinal from '../logofinal.jpg'
 import { Link } from 'react-router-dom';
 
 const Header = ({ button1Text, button2Text }) => {
@@ -23,7 +24,7 @@ const Header = ({ button1Text, button2Text }) => {
     <header className="bg-gray-900 py-4 md:px-8 text-white flex flex-row justify-between items-center relative">
       <div className="flex items-center">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="Logo" className="h-8 mr-2" />
+          <img src={logofinal} alt="Logo" className="h-8 mr-2" />
           <h1 className="text-2xl font-bold font-serif">EcoScore</h1>
         </Link>
       </div>

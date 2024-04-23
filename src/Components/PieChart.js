@@ -1,7 +1,7 @@
 import React from 'react';
 import { ResponsiveContainer, PieChart, Pie, Tooltip, Legend, Label, Cell } from 'recharts';
 
-const PieCharts = ({ totalEmissionSubForm1, totalEmissionSubForm2, totalEmissionSubForm3, totalEmissionSubForm4, totalEmissionSubForm5, totalSum }) => {
+const PieCharts = ({ totalEmissionSubForm1, totalEmissionSubForm2, totalEmissionSubForm3, totalEmissionSubForm4, totalEmissionSubForm5, totalSum2 }) => {
   // Data for the pie chart
   const data = [
     { name: 'Collection', value: totalEmissionSubForm1.toFixed(2), co2: totalEmissionSubForm1 },

@@ -4,12 +4,12 @@ import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Toolti
 const ResultAndGraph = ({ totalEmissionSubForm1, totalEmissionSubForm2, totalEmissionSubForm3, totalEmissionSubForm4, totalEmissionSubForm5, totalSum }) => {
   // Data for the bar chart
   const data = [
-    { name: 'Collection', value: totalEmissionSubForm1.toFixed(2), co2: totalEmissionSubForm1 },
-    { name: 'Segregation', value: totalEmissionSubForm2.toFixed(2), co2: totalEmissionSubForm2 },
-    { name: 'Pretreatment', value: totalEmissionSubForm3.toFixed(2), co2: totalEmissionSubForm3 },
-    { name: 'A D', value: totalEmissionSubForm4.toFixed(2), co2: totalEmissionSubForm4 },
-    { name: 'BioMethane', value: totalEmissionSubForm5.toFixed(2), co2: totalEmissionSubForm5 },
-    { name: 'Cumulative', value: totalSum.toFixed(2), co2: totalSum },
+    { name: 'Collection', value: totalEmissionSubForm1.toFixed(3), co2: totalEmissionSubForm1 },
+    { name: 'Segregation', value: totalEmissionSubForm2.toFixed(3), co2: totalEmissionSubForm2 },
+    { name: 'Pretreatment', value: totalEmissionSubForm3.toFixed(3), co2: totalEmissionSubForm3 },
+    { name: 'A D', value: totalEmissionSubForm4.toFixed(3), co2: totalEmissionSubForm4 },
+    { name: 'BioMethane', value: totalEmissionSubForm5.toFixed(3), co2: totalEmissionSubForm5 },
+    { name: 'Cumulative', value: totalSum.toFixed(3), co2: totalSum },
   ];
 
   // Calculate the maximum value among the total emissions
@@ -21,7 +21,7 @@ const ResultAndGraph = ({ totalEmissionSubForm1, totalEmissionSubForm2, totalEmi
 
   return (
     <div style={{ textAlign: 'center', color: 'white' }}>
-      <h2 style={{ color: 'black', marginTop: '1rem' }}>Total Carbon Emission: {totalSum.toFixed(2)} Kg </h2>
+      <h2 style={{ color: 'black', marginTop: '1rem' }}>Total Carbon Emission: {totalSum.toFixed(2)} Kg CO2 eq.</h2>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart data={data} margin={{ top: 50, right: 30, left: 20, bottom: 50 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#555" />
