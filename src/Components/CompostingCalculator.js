@@ -92,36 +92,36 @@ const CompostingCalculator = () => {
       foodWaste: 0, // kg CO2 per kg
       water: 0.000271, // kg CO2 per liter
       distance: {
-        Large: { petrol: 0.250, diesel: 0.7375 }, // kg CO2 per km - premium sedan
-        Medium: { petrol: 0.189, diesel: 0.5928 }, // medium - petrol - gypsy
-        Small: { petrol: 0.138, diesel: 0.3070 }
+        heavyDuty: { petrol: 1.17, diesel: 1.12 }, // kg CO2 per km - premium sedan
+        //Medium: { petrol: 0.189, diesel: 0.4 }, // medium - petrol - gypsy
+        lightDuty: { petrol: 0.56, diesel: 0.374 }
       },
       manHours: 0, // hypothetical value, kg CO2 per hour
-      segregationElectricity:0.324,
+      segregationElectricity:0.82,
       pretreatment: {
         Chemical: {
           hydrochloricAcid: 0.89, // kg CO2 per kg
           sulphuricAcid: 0.14, // kg CO2 per kg
           potassiumHydroxide: 1.94, // kg CO2 per ml
-          electricityChemical: 0.324 // kg CO2 per kWh
+          electricityChemical: 0.82 // kg CO2 per kWh
         },
         Physical: {
-          electricityPhysical: 0.324 // kg CO2 per kWh
+          electricityPhysical: 0.82 // kg CO2 per kWh
         },
         Thermal: {
-          electricityThermal: 0.324, // kg CO2 per kWh
+          electricityThermal: 0.82, // kg CO2 per kWh
           coal: 2.66772, // kg CO2 per kg  (coking coal)
           naturalGas: 2.6928, // kg CO2 per kg
           biomass: 1.7472 // kg CO2 per kg (wood and wood waste)
         },
         Microwave: {
-          electricityMicrowave: 0.324 // kg CO2 per kWh
+          electricityMicrowave: 0.82 // kg CO2 per kWh
         }
       },
       anaerobicDigestion: {
-        electricityAnaerobicDigestion: 0.324 ,// kg CO2 per kWh
+        electricityAnaerobicDigestion: 0.82 ,// kg CO2 per kWh
         sodiumHydroxide:0.46,
-        methaneProduced: 0.324
+        methaneProduced: 0.82
       }
     };
 
@@ -278,9 +278,8 @@ const CompostingCalculator = () => {
             className="w-full mb-4 p-2 text-black appearance-none rounded-md text-sm sm:text-base"
           >
             <option value="">Select Vehicle Type</option>
-            <option value="Large">Large</option>
-            <option value="Medium">Medium</option>
-            <option value="Small">Small</option>
+            <option value="heavyDuty">Heavy Duty Vehicles</option>
+            <option value="lightDuty">Light Duty Vehicles</option>
           </select>
           {inputs.vehicleType && (
             <select
@@ -487,9 +486,8 @@ const CompostingCalculator = () => {
             className="w-full mb-4 p-2 text-black appearance-none rounded-md text-sm sm:text-base"
           >
             <option value="">Select Vehicle Type</option>
-            <option value="Large">Large</option>
-            <option value="Medium">Medium</option>
-            <option value="Small">Small</option>
+            <option value="heavyDuty">Heavy Duty Vehicles</option>
+            <option value="lightDuty">Light Duty Vehicles</option>
           </select>
           {inputs.anaerobicDigestionInputs.vehicleType && (
             <select
