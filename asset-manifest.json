@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Carbon-Emission/static/css/main.cf061b59.css",
-    "main.js": "/Carbon-Emission/static/js/main.41257383.js",
+    "main.js": "/Carbon-Emission/static/js/main.5d1899f9.js",
     "static/js/453.50a83da2.chunk.js": "/Carbon-Emission/static/js/453.50a83da2.chunk.js",
     "static/media/logofinal.jpg": "/Carbon-Emission/static/media/logofinal.d82d20005f4721411bd5.jpg",
     "index.html": "/Carbon-Emission/index.html",
     "main.cf061b59.css.map": "/Carbon-Emission/static/css/main.cf061b59.css.map",
-    "main.41257383.js.map": "/Carbon-Emission/static/js/main.41257383.js.map",
+    "main.5d1899f9.js.map": "/Carbon-Emission/static/js/main.5d1899f9.js.map",
     "453.50a83da2.chunk.js.map": "/Carbon-Emission/static/js/453.50a83da2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cf061b59.css",
-    "static/js/main.41257383.js"
+    "static/js/main.5d1899f9.js"
   ]
 }
