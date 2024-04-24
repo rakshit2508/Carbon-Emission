@@ -54,7 +54,7 @@ const AIIntegration = ({ totalEmissionSubForm1, totalEmissionSubForm2, totalEmis
           ))}
         </ul>
       ) : (
-        <p style={styles.noSuggestions}>No suggestions available at the moment.</p>
+        <p style={styles.noSuggestions}>Wait for the suggestions !!!</p>
       )}
     </div>
   );

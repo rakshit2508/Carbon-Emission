@@ -171,6 +171,8 @@ const CompostingCalculator = () => {
         if (!isNaN(inputValue)) {
           const emissionFactor = emissionFactors.pretreatment[pretreatmentType].electricityMicrowave;
           totalEmissionStep3 += inputValue * emissionFactor;
+          console.log(inputValue);
+          console.log(emissionFactor);
         } else {
           console.error(`Invalid input value for electricity`);
         }
@@ -188,9 +190,11 @@ const CompostingCalculator = () => {
         }
       }
     }
-    totalEmissionStep3 += +
-    inputs.water * emissionFactors.water;
+    totalEmissionStep3 += inputs.water * emissionFactors.water;
+
     console.log(inputs.water);
+    console.log(emissionFactors.water);
+    console.log(totalEmissionStep3);
     let totalEmissionStep4 = 0;
     let totalEmissionStep5  = 0;
     if (inputs.anaerobicDigestionInputs) {
@@ -433,7 +437,7 @@ const CompostingCalculator = () => {
       <div>
         <input
           type="number"
-          name="thermalInputs.electricityThermal"
+          name="microwaveInputs.electricityMicrowave"
           placeholder="Electricity (in kWh)"
           onChange={handleInputChange}
           className="w-full mb-4 p-2 text-black rounded-md"
