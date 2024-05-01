@@ -12,7 +12,7 @@ const AIIntegration = ({ totalEmissionSubForm1, totalEmissionSubForm2, totalEmis
         setSuggestions([]);
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
         const prompt = `
-          Our Anaerobic Digestion  operation currently emits a total of ${totalSum} tonnes of CO2.
+          Our Anaerobic Digestion  operation currently emits a total of ${totalSum} Kg of CO2.
           This is comprised of:
           - ${totalEmissionSubForm1} Kg CO2 eq. from Collection of yard waste and food waste in step 1,
           - ${totalEmissionSubForm2} Kg CO2 eq. from  Segregation in step 2,

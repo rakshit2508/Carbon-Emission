@@ -220,6 +220,7 @@ const CompostingCalculator = () => {
       if (!isNaN(methaneProducedInput)) {
         const methaneEmissionFactor = emissionFactors.anaerobicDigestion.methaneProduced;
         totalEmissionStep5 = -1* 0.3* methaneProducedInput * methaneEmissionFactor * 0.277777778*55.5; // MJ to KWH
+        console.log(methaneEmissionFactor);
       } else {
         console.error('Invalid input value for methane produced during anaerobic digestion');
       }
